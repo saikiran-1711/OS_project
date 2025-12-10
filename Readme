@@ -1,0 +1,15 @@
+
+
+This project implements a scalable, modular thread management library in C,
+capable of handling thousands of tasks using an efficient thread pool design.
+
+The library includes:
+- Core thread wrappers (creation, join, detach, exit)
+- Synchronization primitives (mutex + condition variable abstractions)
+- A scalable thread pool with task queue
+- Example programs and stress tests
+
+---
+
+
+
