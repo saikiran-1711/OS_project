@@ -1,16 +1,19 @@
 CC = gcc
-CFLAGS = -pthread -Iinclude
+CFLAGS = -pthread -Iinclude -Wall -Wextra
 
-SRC = src/threadlib.c src/threadpool.c src/sync.c
+SRCS = src/threadlib.c src/threadpool.c src/sync.c
 
-all: examples
+all: example_basic example_pool
 
-examples: $(SRC)
-	$(CC) $(CFLAGS) -o example_basic examples/example_basic_threads.c $(SRC)
-	$(CC) $(CFLAGS) -o example_pool examples/example_threadpool.c $(SRC)
+example_basic: $(SRCS) examples/example_basic_threads.c
+	$(CC) $(CFLAGS) -o example_basic examples/example_basic_threads.c $(SRCS)
+
+example_pool: $(SRCS) examples/example_threadpool.c
+	$(CC) $(CFLAGS) -o example_pool examples/example_threadpool.c $(SRCS)
 
 test:
-	$(CC) $(CFLAGS) -o test_pool tests/test_threadpool_stress.c $(SRC)
+	$(CC) $(CFLAGS) -o test_pool tests/test_threadpool_stress.c $(SRCS)
 
 clean:
 	rm -f example_basic example_pool test_pool
+
